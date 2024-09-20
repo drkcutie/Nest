@@ -1,5 +1,5 @@
 
-# Link Sync
+# Nest
 
 The app is to be developed to address these issues by providing an automated solution for categorizing, and managing events such as meetings etc, ultimately enhancing productivity and reducing the burden of manual calendar management.
 
