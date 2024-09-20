@@ -44,9 +44,9 @@ The system automatically parses scheduled links into organized, easy-to-view eve
 
 Enhance productivity with automated gap detection and task assignment.
 
--Gap Detection: Analyze work, school, or event schedules to identify free time within a 24-hour period.
--Task Assignment: Automatically suggest or assign tasks to available time slots.
--Recursive Scheduling: Apply gap detection and task assignment over a week or a month.
+- Gap Detection: Analyze work, school, or event schedules to identify free time within a 24-hour period.
+- Task Assignment: Automatically suggest or assign tasks to available time slots.
+- Recursive Scheduling: Apply gap detection and task assignment over a week or a month.
 
 ## Notifications / Reminders
 
