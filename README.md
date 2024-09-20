@@ -5,7 +5,7 @@ The app is to be developed to address these issues by providing an automated sol
 
 
 
-Functional Requirements
+# Functional Requirements
 
 1. Authentication / Login and Registration
 
@@ -38,7 +38,7 @@ Users can categorize data and content with the following capabilities:
 The system automatically parses scheduled links into organized, easy-to-view events, helping users manage tasks and deadlines more efficiently.
 
 
-Optional Features
+# Optional Features
 5. Automated Schedule Gap Identification and Task Assignment
 
 Enhance productivity with automated gap detection and task assignment.
