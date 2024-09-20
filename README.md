@@ -68,9 +68,3 @@ https://lucid.app/lucidchart/5ffb15d8-721d-4da4-8d53-179f8a59e261/edit?viewport_
 ## UI/ UX DESIGN
 
 https://www.figma.com/design/J7ee0FpgF2qD2yIp5FqTzj/Information-Management-2-(UI-%2F-UX-)?node-id=0-1&t=8sXbcibwYCDYRl6m-1
-# Link Sync
-
-The app is to be developed to address these issues by providing an automated solution for categorizing, and managing events such as meetings etc, ultimately enhancing productivity and reducing the burden of manual calendar management.
-
-
-
