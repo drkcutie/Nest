@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-800">
+    {% block content %} {% include 'components/navbar.html' %}
+
+    <div
+      class="flex flex-col items-center justify-center min-h-screen h-screen"
+    >
+      <div class="text-center" data-aos="fade-up" data-aos-duration="2000">
+        <h1
+          class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+        >
+          Simplify, Organize, and Access
+        </h1>
+        <h1
+          class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+        >
+          Your
+          <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500"
+            >Links</mark
+          >
+          in One Place
+        </h1>
+
+        <p
+          class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
+        >
+          A user-friendly platform that helps you organize your links into
+          neatly categorized folders, <br />
+          making it easy to manage and access your important resources.
+        </p>
+      </div>
+    </div>
+
+    {% include 'components/footer.html' %} {% endblock %}
+  </body>
+</html>
