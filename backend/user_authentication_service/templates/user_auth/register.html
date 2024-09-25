@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+<form method="POST" action="/auth/register/">
+    {% csrf_token %}
+    <h1>Register</h1>
+    <label for="first_name"></label>
+    <input type="text" name="first_name" id="first_name" placeholder="First Name">
+    <label for="last_name"></label>
+    <input type="text" name="last_name" id="last_name" placeholder="Last Name">
+    <label for="username"></label>
+    <input type="text" name="username" id="username" placeholder="Username">
+    <label for="email"></label>
+    <input type="email" name="email" id="email" placeholder="Email">
+    <label for="password"></label>
+    <input type="password" name="password" id="password" placeholder="Password">
+    <label for="confirm_password"></label>
+    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+
+    <!-- Add your form fields here -->
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>
