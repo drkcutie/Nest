@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,10 +49,75 @@
        </div>  
 
 
+
+
         <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
 
 
+        <div class="main-container">
 
+          <div class="header">
+            <h1 class="font-bold text-2xl">Profile Account</h1>
+            <p>Manage your information here</p>
+          </div>
+
+
+          <div class="profile-div flex w-full gap-5 py-5 ">
+
+                 <img class="rounded-full w-24 h-24 cursor-pointer"  src="{%if user.profile_pic %} {% static user.profile_pic  %} {% else %} https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg {% endif %}" alt="image description">
+
+                
+                <div class="name-email-div flex flex-col justify-center ">
+                    <h1 class="font-bold">{{user.username}}</h1>
+                    <p>{{user.email}}</p>
+                </div>
+               
+                 
+            </div>
+
+
+              <div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
+                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{user.first_name}}" required />
+                    </div>
+                    <div>
+                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
+                        <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{user.last_name}}" required />
+                    </div>
+                    <div>
+                        <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{user.email}}" required />
+                    </div>  
+                    <div>
+                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
+                        <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                    </div>
+                   
+                  </div>
+
+                <form  method="POST" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+
+                  {% csrf_token %}
+                  
+                                                    
+                
+
+
+                  <div class="file-input-div flex justify-between gap-5">
+
+                  
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Change Profile</label>
+                  <input name="profileimg" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+
+                  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update</button>
+
+                </div>
+
+      
+                </form>
+
+        </div>
 
       </div>
     </div>

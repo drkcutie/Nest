@@ -85,9 +85,8 @@ def register_user(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Registration successful! You can now log in.')
-            return redirect('login_user')
+            return redirect('login')
         else:
-
             messages.error(request, "Username, email, or password is invalid.")
     else:
         form = RegisterForm()
@@ -103,10 +102,11 @@ def welcome(request):
 
 
 def logout_view(request):
+    
     if 'user_data' in request.session:
         del request.session['user_data']
     logout(request)
-    messages.info(request, "Logged out successfully!")
+    messages.success(request, "Logged out successfully!")
     return redirect('login')
 
 

@@ -58,7 +58,7 @@ class RegisterForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError("Passwords do not match.")
-        
+     
         if password and len(password) < 8:
             print("Password must be at least 8 characters long.")
             

@@ -100,6 +100,8 @@ MIDDLEWARE = [
 ]
 
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -169,6 +171,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -179,4 +184,4 @@ AUTH_USER_MODEL = 'user_authentication_service.User'
 
 
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True

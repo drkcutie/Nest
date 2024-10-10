@@ -8,9 +8,10 @@
     <title>Dashboard</title>
 
     <script>
-      function openCategory(id) {
-          window.location.href = `/user/dashboard/${id}/`;
-      }
+         function openFolderTab(categoryId) {
+            window.location.href = "/${categoryId}"; 
+        }
+
 
     </script>
 
@@ -91,8 +92,9 @@
             </div>
         </div>
 
+        <p>TEST</p>
 
-        <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
         
 
@@ -127,7 +129,7 @@
             <p>No Category</p>
           {% endfor %}
      
-        </div>
+        </div> -->
 
         </div>
     </div>
