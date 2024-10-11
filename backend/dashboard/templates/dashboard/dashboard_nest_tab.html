@@ -53,44 +53,7 @@
       <div class="border-div h-screen border border-gray-200 p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
 
 
-         <div id="add-room-popup" class=" hidden fixed inset-0 z-50  bg-black bg-opacity-50 text-slate-50" >
-            <div class="flex items-center justify-center h-full">
-                <div class="bg-white rounded-lg p-6 w-2/5 h-2/6">
-                    <!-- <span id="close-popup" class="cursor-pointer text-black float-right">&times; <a href="{% url 'dashboard'%}"></a></span> -->
-                    <h2 class="text-xl font-bold">Create category</h2>
-                    <p class="mt-2 ">Here you can add your new category details.</p>
-
-                    <form method="POST" class="p-5">
-                      {% csrf_token %}
-                      
-                      <div class="form-group relative my-5">
-                          <!-- <label for="id_name">Name</label>
-                          <input type="text" name="name" id="id_name" maxlength="50" required placeholder="Enter category name" class="custom-name-input"> -->
-                          <input type="text"name="name" id="id_name" maxlength="50" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  required />
-                          <label for="id_name" class="custom-name-input absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name</label>
-                      </div>
-                  
-                      <div class="form-group relative flex my-5 gap-5">
-                          <label for="id_color" class="">Pick A Color</label>
-                          <input type="color" name="color" id="id_color" class="custom-color-input cursor-pointer">
-                      </div>
-
-                      <div class="button-div flex justify-end">
-
-
-                      
-                      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create</button>
-
-                      <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><a href="{% url 'dashboard' %}">Cancel</a></button>
-                    </div>
-
-                     
-                  </form>
-                  
-                    <!-- Add more input fields or content as needed -->
-                </div>
-            </div>
-        </div>
+        
 
         <p>TEST</p>
 
