@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,13 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
 
-    <script>
-         function openFolderTab(categoryId) {
-            window.location.href = "/${categoryId}"; 
-        }
-
-
-    </script>
+  
 
   </head>
   <body>
@@ -46,59 +42,186 @@
     <!-- Navbar and Sidebar -->
     {% include 'dashboard/components/navbar_dashboard.html' %}
     {% include 'dashboard/components/sidebar_dashboard.html' %}
-
+      
     <!-- Main content -->
     <div class="p-4 sm:ml-64 h-screen mt-14 ">
 
       <div class="border-div h-screen border border-gray-200 p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
 
 
+        <!-- header -->
+        <div style="background-color: {{category.color}}" class=" shadow-inner h-36 background-header p-5 rounded-lg mb-8">
+
+         <p class="text-gray-700 font-bold text-3xl">{{category.name}}</p>  
+         <p class="text-gray-700 text-xl">{{user.username}}</p>  
+
+         
+
+         <img src="static\images\dashboard\folder.png" alt="">
+
+
+        </div>
+
         
+        <div class="folder-outer-div w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            
+         
+           
+                {% for folder in folders %}
+                    <div id="folders" style="background-color: {{folder.color}};" class="folders h-72 border-dashed border border-gray-600 rounded-lg hover:bg-gray-200 flex items-center justify-center  cursor-pointer transition ease-in">
 
-        <p>TEST</p>
+                      {{folder.title}}
+                      {{folder.subheading}}
+                      {{folder.description}}
+            
+                    </div>
+                {% empty %}
+                  
+                {% endfor %}
+            
 
-        <!-- <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- add folder hover element -->
+          <div id="add-folder" class="  add-folder h-72 border-dashed border border-gray-600 rounded-lg hover:bg-gray-200 flex items-center justify-center  cursor-pointer transition ease-in">
 
-        
-
-  
-          {% for c in categories %}
-          
-
-
-          <div onclick="openCategory({{c.id}})" class="cursor-pointer h-72  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg " >
-
-          
+            <button><svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 32 32"><path fill="currentColor" d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v5h-5v2h5v5h2v-5h5v-2h-5v-5z"/></svg></button>
+            
+          </div>
 
 
-          
-            <div class="p-5 rounded-t-lg shadow-inner" style="background-color: {{c.color}};">
-              <div class="header h-20">
-                <a href="">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{c.name}}</h5>
-              </a>
-              </div>
-               
-               
-               
+
+          <!-- hidden add folder popup -->
+          <div id="add-folder-popup" class=" hidden fixed inset-0 z-50  bg-black bg-opacity-50 text-slate-50  " >
+            <div class="flex items-center justify-center h-full">
+                <div class="bg-white rounded-lg p-6 w-2/5 h-4/6">
+                    <!-- <span id="close-popup" class="cursor-pointer text-black float-right">&times; <a href="{% url 'dashboard'%}"></a></span> -->
+                    <h2 class="text-xl font-bold">Create Folder</h2>
+                    <p class="mt-2 ">Create folders and start organizing your links now</p>
+
+                    <form method="POST" class="p-5" action="{% url 'dashboard-nest-tab' category.categoryID %}">
+                      {% csrf_token %}
+                      
+                      <div class="form-group relative my-5">
+                         
+                          <input type="text"name="title" id="id_title" maxlength="50" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "   />
+                          <label for="id_title" class="custom-name-input absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Folder Name</label>
+                      </div>
+
+                      <div class="form-group relative my-5">
+                         
+                          <input type="text"name="subheading" id="id_subheading" maxlength="50" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "   />
+                          <label for="id_subheading" class="custom-name-input absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Subheading</label>
+                      </div>
+
+
+                      <div class="form-group relative my-5">
+                          <!-- <label for="id_name">Name</label>
+                          <input type="text" name="name" id="id_name" maxlength="50" required placeholder="Enter category name" class="custom-name-input"> -->
+                          <input type="text"name="description" id="id_description" maxlength="50" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "   />
+                          <label for="id_description" class="custom-name-input absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Description</label>
+                      </div>
+                  
+                      <div class="form-group relative flex my-5 gap-5">
+                          <label for="id_color" class="">Pick A Color</label>
+                          <input type="color" name="color" id="id_color" class="custom-color-input cursor-pointer">
+                      </div>
+                      
+
+                      <div class="add-link pb-5">
+                      <div class="button-addlink flex items-center pb-5">
+
+                        <button type="button" onclick="openAddLink();" id="add-link-toogle" class=" flex justify-center items-center text-blue-700"> <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12.502 4.93a4.65 4.65 0 0 1 6.575 6.576l-.011.01l-2.265 2.265a4.65 4.65 0 0 1-7.012-.502a.875.875 0 1 1 1.401-1.048a2.9 2.9 0 0 0 4.374.313l2.259-2.26a2.9 2.9 0 0 0-4.101-4.1l-1.294 1.287a.875.875 0 0 1-1.234-1.24zm-3.64 4.22a4.65 4.65 0 0 1 5.348 1.57a.875.875 0 1 1-1.401 1.05a2.9 2.9 0 0 0-4.373-.314l-2.26 2.26a2.9 2.9 0 0 0 4.1 4.1l1.286-1.285a.875.875 0 1 1 1.238 1.237l-1.292 1.291l-.01.01a4.65 4.65 0 0 1-6.576-6.575l.011-.01l2.265-2.265a4.65 4.65 0 0 1 1.663-1.07" clip-rule="evenodd"/></svg>Add your first link</button>
+                      </div>
+
+
+                      <div class="link-nav">
+
+                              <div class="link-inputs flex justify-between w-full gap-3 hidden">
+                                  
+                                <div class="relative z-0 w-full">
+                                    <input type="text" name="title" id="id_title_link" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="id_title_link" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Link Name</label>
+                                  </div>
+
+
+
+                                  <div class="relative z-0 w-full">
+                                    <input type="text" name="link" id="id_link" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="id_link" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Url</label>
+                                  </div>
+                              </div>
+
+                      </div>
+
+                  </div>
+
+
+                      <div class="button-div flex justify-end">
+
+
+                      
+                      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create</button>
+
+                      <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><a href="{% url 'dashboard-nest-tab' id=category.categoryID  %}">Cancel</a></button>
+                    </div>
+
+
+                    
+
+                     
+                  </form>
+
+
+
+                 
+                  
+                    
+                </div>
             </div>
-              <div class="body p-5 ">
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">LINKS</p>
-
-              </div>
         </div>
+
+          
+
+        </div>
+
+
+       
         
-          {% empty %}
-            <p>No Category</p>
-          {% endfor %}
-     
-        </div> -->
 
+
+
+     
+
+
+       
+
+
+       
+       
         </div>
     </div>
 
 
     </div>
+
+    <script>
+
+      const addFolder = document.getElementById("add-folder");
+
+
+      addFolder.addEventListener("click", function addFolder(){
+        const addFolderPopup = document.getElementById("add-folder-popup");
+
+        addFolderPopup.classList.toggle("hidden");
+      })
+
+
+      function openAddLink() {
+          const toggleAddLink = document.querySelector(".link-inputs");
+          toggleAddLink.classList.toggle("hidden"); // Toggle visibility by adding/removing the hidden class
+      }
+
+      
+  </script>
 
     {% endblock %}
   </body>

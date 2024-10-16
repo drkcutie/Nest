@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,12 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
 
-    <script>
-      function openCategory(id) {
-          window.location.href = `/user/dashboard/${id}/`;
-      }
-
-    </script>
+    
 
   </head>
   <body>
@@ -92,48 +87,60 @@
         </div>
 
 
+        {% if categories %}
+        <!-- Grid layout if categories exist -->
         <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-
-        
-
-  
           {% for c in categories %}
-          
+            <div onclick="openCategory({{ c.categoryID }})" class="cursor-pointer h-72 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg">
+              <div class="p-5 rounded-t-lg shadow-inner" style="background-color: {{c.color}};">
+                
+                <div class="header h-20 flex ">
+                  
+                  <a href="">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700 dark:text-white">{{ c.name }}</h5>
+                  </a>
 
-
-          <div onclick="openCategory({{c.id}})" class="cursor-pointer h-72  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg " >
-
-          
-
-
-          
-            <div class="p-5 rounded-t-lg shadow-inner" style="background-color: {{c.color}};">
-              <div class="header h-20">
-                <a href="">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700 dark:text-white">{{c.name}}</h5>
-              </a>
+                  <!-- <img class="h-10 w-20" src="{% static 'images/dashboard/nesty.png' %}" alt=""> -->
+                </div>
               </div>
-               
-               
-               
+              <div class="body p-5">
+                {% for f in folders %}
+                  {% if f.categoryID_id == c.categoryID %}
+                    <div class="flex items-center gap-2 transition ease-in hover:bg-gray-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M4 18V6v13zm0 2q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h6l2 2h8q.825 0 1.413.588T22 8v5h-2V8h-8.825l-2-2H4v12h5v2zm10.6 2.6L11 19l3.6-3.6l1.4 1.425L13.825 19L16 21.175zm4.8 0L18 21.175L20.175 19L18 16.825l1.4-1.425L23 19z"/>
+                      </svg>
+                      <a class="font-normal text-gray-700 dark:text-gray-400">{{ f.title }}</a>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
             </div>
-              <div class="body p-5 ">
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">LINKS</p>
-
-              </div>
-        </div>
-        
-          {% empty %}
-            <p>No Category</p>
           {% endfor %}
-     
         </div>
-
+      {% else %}
+        <!-- Centered empty page if no categories -->
+        <div class="empty-page flex mt-56 flex-col items-center justify-center">
+          <div class="empty-content text-center bg-[#b6e5ff]">
+            <img class="h-72 w-full" src="{% static 'images/dashboard/nesty_empty.png' %}" alt="Dashboard Image">
+            <h1 class="font-bold text-center text-5xl mb-2">No Category</h1>
+            <p class="text-md">Create new category and start organizing now.</p>
+          </div>
+        </div>
+      {% endif %}
+      
         </div>
     </div>
 
 
     </div>
+
+    <script>
+      function openCategory(id) {
+        window.location.href = `/user/dashboard/${id}/`;
+     }
+
+    </script>
 
     {% endblock %}
   </body>
