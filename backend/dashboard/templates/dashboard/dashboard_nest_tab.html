@@ -50,10 +50,15 @@
 
 
         <!-- header -->
-        <div style="background-color: {{category.color}}" class=" shadow-inner h-36 background-header p-5 rounded-lg mb-8">
+        <div style="background-color: {{category.color}}" class=" shadow-inner h-30 background-header p-5 rounded-lg mb-8">
 
-         <p class="text-gray-700 font-bold text-3xl">{{category.name}}</p>  
-         <p class="text-gray-700 text-xl">{{user.username}}</p>  
+         <p class="text-white font-bold text-3xl">{{category.name}}</p>
+         <div class="flex items-center gap-2">
+          <img class="w-6 h-6 rounded-full object-cover" src="{% if user.profile_pic %} {% static user.profile_pic %} {% else %} https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg {% endif %}" alt="Rounded avatar">
+          
+          <p class="text-white text-md leading-none">created by: {{ user.username }}</p>
+        </div>
+        
 
          
 
@@ -62,26 +67,65 @@
 
         </div>
 
+        <div class="folder-nav p-1 flex ">
+          <p class="font-bold text-lg">Folders</p>
+          
+
+          <!-- <div class="w-8 h-6 bg-gray-300 rounded-full cursor-pointer text-center">{{folders.count}}</div> -->
+
+         
+
+        </div>
+        <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">
+
         
         <div class="folder-outer-div w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             
          
-           
-                {% for folder in folders %}
-                    <div id="folders" style="background-color: {{folder.color}};" class="folders h-72 border-dashed border border-gray-600 rounded-lg hover:bg-gray-200 flex items-center justify-center  cursor-pointer transition ease-in">
-
-                      {{folder.title}}
-                      {{folder.subheading}}
-                      {{folder.description}}
-            
-                    </div>
-                {% empty %}
-                  
+            <!-- style="background-color: {{folder.color}};"  -->
+            {% for folder in folders %}
+            <div id="folders" class="folders flex flex-col w-full max-w-sm h-auto min-h-60 rounded-2xl cursor-pointer transition ease-in p-4 hover:shadow-xl" style="background-color: {{folder.color}};">
+              
+              <div class="folder-title flex items-start justify-between mb-3">
+                <div class="text-left">
+                  <h1 class="font-bold text-2xl text-white truncate">{{ folder.title }}</h1>
+                  <h2 class="text-gray-100 font-semibold truncate" style="max-width: 220px;">{{ folder.subheading }}</h2> <!-- Limiting the width for truncation -->
+                </div>
+                <!-- SVG icon for folder options -->
+                <svg class="hover:bg-gray-400 rounded-full transition ease-in p-1 cursor-pointer" id="edit-folder" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 32 32">
+                  <circle cx="16" cy="8" r="2" fill="white"/>
+                  <circle cx="16" cy="16" r="2" fill="white"/>
+                  <circle cx="16" cy="24" r="2" fill="white"/>
+                </svg>
+              </div> 
+          
+              <!-- Folder description with adaptive height -->
+              <p class="w-full my-3 text-white line-clamp-3 overflow-hidden">
+                {{ folder.description }}
+              </p>
+          
+              <!-- Folder tags -->
+              <div class="folder-tags flex flex-wrap gap-2 mt-auto">
+                {% for tag in tags %}
+                  {% if tag.folderID_id == folder.folderID %}
+                    {% for individual_tag in tag.tag_list %}
+                      <span class="bg-gray-200 text-gray-700 text-sm font-medium px-3 py-1 rounded-md flex items-center">
+                        {{ individual_tag }}
+                      </span>
+                    {% endfor %}
+                  {% endif %}
                 {% endfor %}
+              </div>
+          
+            </div>
+          {% empty %}
+            <p class="text-center text-gray-500">No folders found.</p>
+          {% endfor %}
+          
             
 
           <!-- add folder hover element -->
-          <div id="add-folder" class="  add-folder h-72 border-dashed border border-gray-600 rounded-lg hover:bg-gray-200 flex items-center justify-center  cursor-pointer transition ease-in">
+          <div id="add-folder" class="  add-folder h-60 border-dashed border border-gray-600 rounded-2xl hover:bg-gray-200 flex items-center justify-center  cursor-pointer transition ease-in">
 
             <button><svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 32 32"><path fill="currentColor" d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v5h-5v2h5v5h2v-5h5v-2h-5v-5z"/></svg></button>
             
@@ -119,18 +163,41 @@
                           <input type="text"name="description" id="id_description" maxlength="50" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "   />
                           <label for="id_description" class="custom-name-input absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Description</label>
                       </div>
+
+
+                      <div class="form-group relative my-5">
+                        <input type="text" id="id_tag" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label for="id_tag" class="custom-name-input absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Tags</label>
+                    </div>
+                    
+                    <div id="tagContainer" class="flex flex-wrap gap-2 my-5">
+                        <!-- Tags will be displayed here dynamically -->
+                    </div>
+                    
+                    <!-- Hidden input to store tags to submit with form -->
+                    <input type="hidden" name="tag" id="hidden_tags" />
                   
                       <div class="form-group relative flex my-5 gap-5">
-                          <label for="id_color" class="">Pick A Color</label>
-                          <input type="color" name="color" id="id_color" class="custom-color-input cursor-pointer">
-                      </div>
+                        <label id="color_label" for="id_color" class="color-text">Pick A Color</label>
+                        <input type="hidden" name="color" id="id_color" class="custom-color-input cursor-pointer">
+                        <div onclick="selectColor('#FF0000')" class="w-8 h-8 bg-red-500 rounded-full cursor-pointer" style="background-color: #FF0000;"></div>
+                        <div onclick="selectColor('#0000FF')" class="w-8 h-8 bg-blue-500 rounded-full cursor-pointer" style="background-color: #0000FF;"></div>
+                        <div onclick="selectColor('#008000')" class="w-8 h-8 bg-green-500 rounded-full cursor-pointer" style="background-color: #008000;"></div>
+                        <div onclick="selectColor('#FFD700')" class="w-8 h-8 bg-yellow-500 rounded-full cursor-pointer" style="background-color: #FFD700;"></div>
+                        <div onclick="selectColor('#800080')" class="w-8 h-8 bg-purple-500 rounded-full cursor-pointer" style="background-color: #800080;"></div>
+                        <div onclick="selectColor('#FF8C00')" class="w-8 h-8 bg-orange-500 rounded-full cursor-pointer" style="background-color: #FF8C00;"></div>
+                        <div onclick="selectColor('#008080')" class="w-8 h-8 bg-teal-500 rounded-full cursor-pointer" style="background-color: #008080;"></div>
+                    </div>
+                    
                       
 
-                      <div class="add-link pb-5">
+                    <!-- <div class="add-link pb-5">
                       <div class="button-addlink flex items-center pb-5">
 
                         <button type="button" onclick="openAddLink();" id="add-link-toogle" class=" flex justify-center items-center text-blue-700"> <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12.502 4.93a4.65 4.65 0 0 1 6.575 6.576l-.011.01l-2.265 2.265a4.65 4.65 0 0 1-7.012-.502a.875.875 0 1 1 1.401-1.048a2.9 2.9 0 0 0 4.374.313l2.259-2.26a2.9 2.9 0 0 0-4.101-4.1l-1.294 1.287a.875.875 0 0 1-1.234-1.24zm-3.64 4.22a4.65 4.65 0 0 1 5.348 1.57a.875.875 0 1 1-1.401 1.05a2.9 2.9 0 0 0-4.373-.314l-2.26 2.26a2.9 2.9 0 0 0 4.1 4.1l1.286-1.285a.875.875 0 1 1 1.238 1.237l-1.292 1.291l-.01.01a4.65 4.65 0 0 1-6.576-6.575l.011-.01l2.265-2.265a4.65 4.65 0 0 1 1.663-1.07" clip-rule="evenodd"/></svg>Add your first link</button>
                       </div>
+
+                      
 
 
                       <div class="link-nav">
@@ -152,7 +219,7 @@
 
                       </div>
 
-                  </div>
+                  </div> -->
 
 
                       <div class="button-div flex justify-end">
@@ -205,6 +272,45 @@
 
     <script>
 
+const tagInput = document.getElementById('id_tag');
+const tagContainer = document.getElementById('tagContainer');
+const hiddenInput = document.getElementById('hidden_tags'); // Hidden input to store tags
+let tags = [];
+
+tagInput.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter' && tagInput.value.trim() !== '') {
+    event.preventDefault(); // Prevent form submission
+
+    const newTag = tagInput.value.trim();
+    if (!tags.includes(newTag)) {
+      tags.push(newTag);
+      tagInput.value = ''; // Clear the input field
+      updateHiddenInput(); // Update hidden input
+      renderTags(); // Re-render the tags
+    }
+  }
+});
+
+function renderTags() {
+  tagContainer.innerHTML = ''; // Clear the previous tags
+
+  tags.forEach((tag, index) => {
+    const tagElement = document.createElement('span');
+    tagElement.classList.add('bg-gray-200', 'text-gray-700', 'text-sm', 'font-medium', 'px-3', 'py-1', 'rounded-md', 'flex', 'items-center');
+    tagElement.innerHTML = `${tag} <span class="ml-2 text-red-500 cursor-pointer" onclick="removeTag(${index})">&times;</span>`;
+    tagContainer.appendChild(tagElement);
+  });
+}
+
+function removeTag(index) {
+  tags.splice(index, 1);
+  updateHiddenInput(); // Update hidden input after removing the tag
+  renderTags(); // Re-render the tags
+}
+
+function updateHiddenInput() {
+  hiddenInput.value = tags.join(','); // Update the hidden input with the tags
+}
       const addFolder = document.getElementById("add-folder");
 
 
@@ -219,6 +325,13 @@
           const toggleAddLink = document.querySelector(".link-inputs");
           toggleAddLink.classList.toggle("hidden"); // Toggle visibility by adding/removing the hidden class
       }
+
+
+      function selectColor(color) {
+      
+        document.getElementById('id_color').value = color; // Set hidden input value
+        document.getElementById('color_label').style.color = color;
+    }
 
       
   </script>

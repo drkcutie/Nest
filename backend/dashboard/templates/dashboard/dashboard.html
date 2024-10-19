@@ -65,9 +65,17 @@
                       </div>
                   
                       <div class="form-group relative flex my-5 gap-5">
-                          <label for="id_color" class="">Pick A Color</label>
-                          <input type="color" name="color" id="id_color" class="custom-color-input cursor-pointer">
+                          <label id="color_label" for="id_color" class="color-text">Pick A Color</label>
+                          <input type="hidden" name="color" id="id_color" class="custom-color-input cursor-pointer">
+                          <div onclick="selectColor('#FF0000')" class="w-8 h-8 bg-red-500 rounded-full cursor-pointer" style="background-color: #FF0000;"></div>
+                          <div onclick="selectColor('#0000FF')" class="w-8 h-8 bg-blue-500 rounded-full cursor-pointer" style="background-color: #0000FF;"></div>
+                          <div onclick="selectColor('#008000')" class="w-8 h-8 bg-green-500 rounded-full cursor-pointer" style="background-color: #008000;"></div>
+                          <div onclick="selectColor('#FFD700')" class="w-8 h-8 bg-yellow-500 rounded-full cursor-pointer" style="background-color: #FFD700;"></div>
+                          <div onclick="selectColor('#800080')" class="w-8 h-8 bg-purple-500 rounded-full cursor-pointer" style="background-color: #800080;"></div>
+                          <div onclick="selectColor('#FF8C00')" class="w-8 h-8 bg-orange-500 rounded-full cursor-pointer" style="background-color: #FF8C00;"></div>
+                          <div onclick="selectColor('#008080')" class="w-8 h-8 bg-teal-500 rounded-full cursor-pointer" style="background-color: #008080;"></div>
                       </div>
+                      
 
                       <div class="button-div flex justify-end">
 
@@ -92,21 +100,20 @@
         <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {% for c in categories %}
             <div onclick="openCategory({{ c.categoryID }})" class="cursor-pointer h-72 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg">
-              <div class="p-5 rounded-t-lg shadow-inner" style="background-color: {{c.color}};">
+              <div class="p-5 rounded-t-lg shadow-inner relative" style="background-color: {{c.color}};">
+                <div class="absolute inset-0 bg-cover bg-right opacity-50 rounded-t-lg"
+                     style="background-image: url('{% static 'images/dashboard/nesty-bg.png' %}');"></div>
                 
-                <div class="header h-20 flex ">
-                  
-                  <a href="">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700 dark:text-white">{{ c.name }}</h5>
-                  </a>
-
-                  <!-- <img class="h-10 w-20" src="{% static 'images/dashboard/nesty.png' %}" alt=""> -->
-                </div>
-              </div>
-              <div class="body p-5">
-                {% for f in folders %}
+                <!-- Content goes here, positioned above the background -->
+                <a>
+                    <h5 class="relative mb-2 text-2xl font-bold tracking-tight text-white">{{ c.name }}</h5>
+                </a>
+            </div>
+            
+              <div class="body p-5 "">
+                {% for f in folders|slice:":10" %}
                   {% if f.categoryID_id == c.categoryID %}
-                    <div class="flex items-center gap-2 transition ease-in hover:bg-gray-200">
+                    <div class="flex items-center gap-2 transition ease-in hover:bg-gray-200 ">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M4 18V6v13zm0 2q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h6l2 2h8q.825 0 1.413.588T22 8v5h-2V8h-8.825l-2-2H4v12h5v2zm10.6 2.6L11 19l3.6-3.6l1.4 1.425L13.825 19L16 21.175zm4.8 0L18 21.175L20.175 19L18 16.825l1.4-1.425L23 19z"/>
                       </svg>
@@ -139,6 +146,12 @@
       function openCategory(id) {
         window.location.href = `/user/dashboard/${id}/`;
      }
+
+      function selectColor(color) {
+      
+        document.getElementById('id_color').value = color; // Set hidden input value
+        document.getElementById('color_label').style.color = color;
+    }
 
     </script>
 

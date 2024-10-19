@@ -7,3 +7,6 @@ urlpatterns = [
     path('settings/', UserSettingsView.as_view(), name='user_settings'),
     path('settings/upload/', UploadImageView.as_view(), name='upload_image'),
 ]
+
+
+

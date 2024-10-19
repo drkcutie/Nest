@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
-from .forms import CategoryForm, FolderForm, LinksForm
-from .models import Category, Folders, Links
+from .forms import CategoryForm, FolderForm, LinksForm, TagsForm
+from .models import Category, Folders, Links, Tags
 from common.utils import upload_local_image
 
 # User Settings View
@@ -63,32 +63,46 @@ class DashboardNestView(View):
 
         
         folders = Folders.objects.filter(categoryID=category, userID=request.user)
+        tags = Tags.objects.filter(userID=request.user)
+
+        for tag in tags:
+            tag.tag_list = tag.tag.split(',')
+
+        
 
 
-        return render(request, self.template_name, {'category': category, 'folders' : folders})
+        return render(request, self.template_name, {'category': category, 'folders' : folders, 'tags': tags})
     
     def post(self, request,id):
         folder_form = FolderForm(request.POST)
-        link_form = LinksForm(request.POST)
-        if folder_form.is_valid() and link_form.is_valid():
+        # link_form = LinksForm(request.POST)
+        tags_form = TagsForm(request.POST)
+        if folder_form.is_valid() and tags_form.is_valid():
             folders = folder_form.save(commit=False)
             folders.userID = request.user  
             folders.categoryID_id = id
             folders.save()
 
-            links = link_form.save(commit=False)
-            links.folder_id = folders.folderID
-            links.user = request.user
-            links.save()
+            # links = link_form.save(commit=False)
+            # links.folder_id = folders.folderID
+            # links.user = request.user
+            # links.save()
+
+            tags = tags_form.save(commit=False)
+            tags.folderID = folders
+            tags.userID = request.user  
+            tags.save()
+
             print("added success folder")
-            print("Link CategoryID", links.folder_id)
+            # print("Link CategoryID", links.folder_id)
             messages.success(request, "Added Folder Successfully")
 
             return redirect('dashboard-nest-tab', id=id)
         
         else:
             print("Folder Form Errors:", folder_form.errors)
-            print("Link Form Errors:", link_form.errors)
+            # print("Link Form Errors:", link_form.errors)
+            print("Tags Form Errors:", tags_form.errors)
             print('no added')
 
         

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category,Folders, Links
+from .models import Category,Folders, Links, Tags
 
 class CategoryForm(forms.ModelForm):
     
@@ -17,5 +17,10 @@ class LinksForm(forms.ModelForm):
     class Meta:
         model = Links
         fields = ['title', 'link']
+
+class TagsForm(forms.ModelForm):
+    class Meta:
+        model = Tags
+        fields = ['tag']
 
 

@@ -41,6 +41,8 @@ class FolderLink(models.Model):
     linkID = models.ForeignKey(Links, on_delete=models.CASCADE, related_name='folder_links')  # Add related_name
 
 class Tags(models.Model):
+    userID = models.ForeignKey(User, on_delete=models.CASCADE, related_name='dashboard_tags', null=True)  # Add related_name
+    folderID = models.ForeignKey(Folders, on_delete=models.CASCADE, related_name='folder_tags', null=True)  # Add related_name
     tagsID = models.AutoField(primary_key=True)  # Add primary key
     tag = models.CharField(max_length=50)
 
