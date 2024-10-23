@@ -110,6 +110,45 @@ class DashboardNestView(View):
         return self.get(request, id)
     
 
+#Dashboard-Nest-Tab
+class DashboardLinksView(View):
+    template_name = 'dashboard/dashboard_links_tab.html'
+
+    def get(self, request, category_id, folder_id):
+        links = Links.objects.filter(folder_id=folder_id)
+        folder  = Folders.objects.filter(folderID=folder_id).first()
+        category = Category.objects.filter(categoryID=category_id).first()
+        context = {
+            'links': links,
+            'category_id': category_id,
+            'folder_id': folder_id,
+            'folder': folder,
+            'category': category,
+        }
+        return render(request, self.template_name, context)
+    
+    def post(self, request, category_id, folder_id):
+        links_form = LinksForm(request.POST)
+        if links_form.is_valid():
+            links = links_form.save(commit=False)
+            links.folder_id = folder_id
+            links.user = request.user
+            links.save()
+            messages.success(request, "Added Link Successfully")
+            return redirect('dashboard-links-tab', category_id=category_id, folder_id=folder_id)
+        else:
+            print("Link Form Errors:", links_form.errors)
+        return self.get(request, category_id, folder_id)
+      
+
+        
+
+
+       
+    
+    
+    
+
   
 
 

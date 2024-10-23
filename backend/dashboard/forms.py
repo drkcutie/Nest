@@ -16,11 +16,12 @@ class FolderForm(forms.ModelForm):
 class LinksForm(forms.ModelForm):
     class Meta:
         model = Links
-        fields = ['title', 'link']
+        fields = ['title', 'link', 'description']
 
 class TagsForm(forms.ModelForm):
     class Meta:
         model = Tags
         fields = ['tag']
+
 
 
