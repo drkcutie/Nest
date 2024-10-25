@@ -110,7 +110,7 @@ class DashboardNestView(View):
         return self.get(request, id)
     
 
-#Dashboard-Nest-Tab
+#Dashboard-Links-Tab
 class DashboardLinksView(View):
     template_name = 'dashboard/dashboard_links_tab.html'
 
@@ -127,18 +127,40 @@ class DashboardLinksView(View):
         }
         return render(request, self.template_name, context)
     
+    #Adding Links
     def post(self, request, category_id, folder_id):
-        links_form = LinksForm(request.POST)
-        if links_form.is_valid():
-            links = links_form.save(commit=False)
-            links.folder_id = folder_id
-            links.user = request.user
-            links.save()
-            messages.success(request, "Added Link Successfully")
+
+        if 'delete_link' in request.POST:  # Handle delete operation
+            link_id = request.POST.get('delete_link')
+            link = get_object_or_404(Links, id=link_id)
+            link.delete()
+            messages.success(request, "Deleted Link Successfully")
             return redirect('dashboard-links-tab', category_id=category_id, folder_id=folder_id)
-        else:
-            print("Link Form Errors:", links_form.errors)
-        return self.get(request, category_id, folder_id)
+
+
+        link_id = request.POST.get('link_id')  # Get the hidden input 'link_id'
+        
+        if link_id:  # Update operation if link_id is present
+            link = get_object_or_404(Links, id=link_id)
+            links_form = LinksForm(request.POST, instance=link)
+            if links_form.is_valid():
+                links_form.save()
+                messages.success(request, "Updated Link Successfully")
+            else:
+                messages.error(request, "Error updating link")
+        else:  # Create operation if no link_id
+            links_form = LinksForm(request.POST)
+            if links_form.is_valid():
+                links = links_form.save(commit=False)
+                links.folder_id = folder_id
+                links.user = request.user
+                links.save()
+                messages.success(request, "Added Link Successfully")
+            else:
+                messages.error(request, "Error adding link")
+
+        return redirect('dashboard-links-tab', category_id=category_id, folder_id=folder_id)
+    
       
 
         
