@@ -52,8 +52,8 @@
         <!-- header -->
         <div style="background-color: {{category.color}}" class=" shadow-inner h-30 background-header p-5 rounded-lg mb-8">
 
-         <p class="text-white font-bold text-3xl">{{category.name}}</p>
-         <div class="flex items-center gap-2">
+         <p class="text-white font-bold text-3xl mb-2">{{category.name}}</p>
+         <div class="flex items-center gap-2 ">
           <img class="w-6 h-6 rounded-full object-cover" src="{% if user.profile_pic %} {% static user.profile_pic %} {% else %} https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg {% endif %}" alt="Rounded avatar">
           
           <p class="text-white text-md leading-none">created by: {{ user.username }}</p>
