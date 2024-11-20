@@ -132,20 +132,14 @@ DATABASES = {
     #change ra settings diri according sa imo database
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-<<<<<<< HEAD
         #name sa db sa imo local machine
-        'NAME': 'your_database_name',
-        'USER': 'postgres',
-        #i type ang password sa imo database
-        'PASSWORD': 'your_password',
-        'HOST': 'localhost',
-        'PORT': '5432',  
-    }
-}
+        # 'NAME': 'your_database_name',
+        # 'USER': 'postgres',
+        # #i type ang password sa imo database
+        # 'PASSWORD': 'your_password',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432',  
 
-
-
-=======
         'NAME': 'nest',
         'USER': 'postgres',
         'PASSWORD': '123456789',
@@ -154,7 +148,11 @@ DATABASES = {
     }
 }
 
->>>>>>> af0fabf3cb79bdea761ba2b5077b2505d6e4326d
+
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
