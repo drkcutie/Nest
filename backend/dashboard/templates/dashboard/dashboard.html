@@ -13,8 +13,12 @@
   <body>
     {% block content %}
    
+    
+    <!-- Navbar and Sidebar -->
+    {% include 'dashboard/components/navbar_dashboard.html' %}
     {% if messages %}
-      <div class="fixed top-10 left-1/2 transform -translate-x-[50%] w-full max-w-md p-3 z-50" data-aos="fade-down" data-aos-duration="999">
+    <div class="fixed top-10 left-1/2 transform -translate-x-1/2 w-full max-w-md p-3 z-50 text-center" data-aos="fade-down" data-aos-duration="999">
+
         {% for message in messages %}
         {% if message.tags == 'success' %}
         <div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
@@ -37,8 +41,6 @@
       </div>
     {% endif %}
 
-    <!-- Navbar and Sidebar -->
-    {% include 'dashboard/components/navbar_dashboard.html' %}
     {% include 'dashboard/components/sidebar_dashboard.html' %}
 
     <!-- Main content -->

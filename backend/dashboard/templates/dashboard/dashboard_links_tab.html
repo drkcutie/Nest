@@ -156,7 +156,7 @@
                       <form class="sm:pr-3" action="#" method="GET">
                           <label for="products-search" class="sr-only">Search</label>
                           <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
-                              <input type="text" name="links" id="searchInput" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search for links">
+                              <input type="text" name="email" id="searchInput" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search for links">
                           </div>
                       </form>
                       <div class="flex items-center w-full sm:justify-end">
@@ -445,7 +445,21 @@
         const closedelete = document.getElementById("close-delete-popup");
 
 
-    
+     document.getElementById("searchInput").addEventListener("keyup", function() {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll("table tbody tr");
+        rows.forEach(row => {
+            const title = row.cells[1].textContent.toLowerCase();
+            const description = row.cells[2].textContent.toLowerCase();
+            const url = row.cells[3].textContent.toLowerCase();
+            
+            if (title.includes(filter) || description.includes(filter) || url.includes(filter)) {
+                row.style.display = "";  
+            } else {
+                row.style.display = "none";  
+            }
+        });
+    });
 
 
             
