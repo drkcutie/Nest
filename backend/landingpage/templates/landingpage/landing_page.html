@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+
+    
+
+
+    
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-800 relative overflow-hidden h-screen">
+    {% block content %} {% include 'components/navbar.html' %}
+
+
+   
+
+   
+
+    <svg data-aos="fade" data-aos-duration="2000" aria-hidden="true" class=" absolute inset-0 w-full h-full z-[-1] skew-y-[-5deg]">
+      <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#3B82F6; stop-opacity:1"></stop> 
+              <stop offset="50%" style="stop-color:#2563EB; stop-opacity:1"></stop> 
+              <stop offset="100%" style="stop-color:#1D4ED8; stop-opacity:1"></stop> 
+          </linearGradient>
+          <pattern id="pattern" width="120" height="120" patternUnits="userSpaceOnUse" x="50%" y="-6">
+              <path d="M.5 120V.5H120" fill="none"></path>
+          </pattern>
+      </defs>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#pattern)"></rect>
+      <svg x="50%" y="-6" class="overflow-visible">
+        
+          <rect class="box bg-gradient-to-r from-cyan-200 via-blue-400 to-indigo-600" stroke-width="0" width="121" height="121" x="620" y="360" fill="#2563EB"></rect> 
+          <rect class="box" stroke-width="0" width="121" height="121" x="-720" y="-360" fill="#1D4ED8"></rect> 
+          <rect class="box" stroke-width="0" width="121" height="121" x="-240" y="-600" fill="#3B82F6"></rect> 
+         
+         
+          <rect class="box" stroke-width="0" width="121" height="121" x="120" y="0" fill="#3B82F6"></rect> 
+         
+        
+          <rect class="box" stroke-width="0" width="121" height="121" x="960" y="-1200" fill="#3B82F6"></rect> 
+          <rect class="box" stroke-width="0" width="121" height="121" x="-120" y="840" fill="#2563EB"></rect> 
+          
+         
+          <rect class="box" stroke-width="0" width="121" height="121" x="-840" y="720" fill="#2563EB"></rect> 
+          <!-- bg-blue-700 -->
+      </svg>
+  </svg>
+  
+    <div
+      class="flex flex-col h-screen"
+    >
+      <div class="text-center justify-center items-center mt-52 " data-aos="fade-up" data-aos-duration="1000">
+        <h1
+          class=" text-7xl font-bold leading-none tracking-tight text-gray-900  dark:text-white"
+        >
+          Simplify, Organize, and Access
+        </h1>
+        <h1
+          class="mb-2 text-7xl font-bold leading-none tracking-tight text-gray-900  dark:text-white"
+        >
+          Your
+          <!-- <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500"
+            >Links</mark
+          > -->
+
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700">Links</span>
+          
+          in One Place
+        </h1>
+
+        <p
+          class="mb-6 text-xl  font-semibold text-gray-500 lg:text-md sm:px-16 xl:px-48 dark:text-gray-400"
+        >
+          A user-friendly platform that helps you organize your links into
+          neatly categorized folders, <br> making it easy to manage and access your important resources.
+        </p>
+
+
+        
+
+
+        <div id="scrollImage" class=" shadow-lg relative w-full overflow-x-hidden md:w-3/4 mx-auto h-96 sm:h-112 md:h-[40rem] lg:h-[48rem] -mb-12 md:-mb-32 max-w-5xl transform-gpu scale-10 rotate-x-45">
+          <img
+              alt="Avatar"
+              loading="lazy"
+              class="transition duration-500 ease-in-out blur-0 scale-100 hover:scale-105 rounded-xl md:rounded-3xl border mx-auto object-cover shadow-sm object-right-top absolute inset-0 w-full h-full"
+              src="static/images/landingpages/DASHBOARD.png"
+          />
+      </div>
+      
+
+            
+
+      </div>
+
+     
+
+      
+    </div>
+
+    <section class="bg-gray-50 dark:bg-gray-800 " >
+      <div
+        class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6"
+      >
+        <!-- Row -->
+        <div class="h-screen items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
+          <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2
+              class="mb-4 text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white" data-aos="fade-up" data-aos-duration="2000"
+            >
+              Organize Your Links Wisely and Securely
+            </h2>
+            <p class="mb-8 font-light lg:text-xl" data-aos="fade-up" data-aos-duration="2000">
+              It effortlessly transform your chaos into order by organizing your links, enjoy lightning fast access, and reclaim valuable time with our ultra-efficient storage solution.
+            </p>
+            <!-- List -->
+            <ul
+              role="list"
+              class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700"
+            >
+              <li class="flex space-x-3" data-aos="fade-right" data-aos-duration="2000">
+                <!-- Icon -->
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400"
+                  fill="#2C67F2""
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span
+                  class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+                  >Centralized Link Management</span
+                >
+              </li>
+              <li class="flex space-x-3" data-aos="fade-right" data-aos-duration="2000">
+                <!-- Icon -->
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400"
+                  fill="#2C67F2"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span
+                  class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+                  >User-Friendly Interface</span
+                >
+              </li>
+              <li class="flex space-x-3" data-aos="fade-right" data-aos-duration="2000">
+                <!-- Icon -->
+                <svg
+                  class="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400"
+                  fill="#2C67F2"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span
+                  class="text-base font-medium leading-tight text-gray-900 dark:text-white"
+                  >Convenience & Accessibility</span
+                >
+              </li>
+            </ul>
+            <p class="mb-8 font-light lg:text-xl" data-aos="fade-right" data-aos-duration="2000">
+              Making it a go-to tool for anyone who values time management and organized digital spaces.
+            </p>
+          </div>
+          <!-- <img
+            class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex"
+            src="https://media.discordapp.net/attachments/1277451699761709102/1287746011871055893/feature-1.png?ex=66f2aa6e&is=66f158ee&hm=53e8c893e26aad1768e3f35b8ff702dd42d4e01355eb4c9d124bd5ba8b1837af&=&format=webp&quality=lossless&width=721&height=525"
+            alt="dashboard feature image"
+          /> -->
+          
+        <img data-aos="fade-up" data-aos-duration="2000"  class="h-96 w-full max-w-lg ms-auto shadow-lg" src="static/images/landingpages/DASHBOARD.png" alt="Image Here">
+        
+
+        </div>
+       
+    </section>
+
+    <section>
+
+
+
+    </section>
+
+
+   
+
+
+    <section class="bg-white dark:bg-gray-900 h-2/4 mt-16 mb-24">
+      <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
+          <h2 class=" text-3xl font-extrabold tracking-tight text-center text-gray-900 lg:mb-8 lg:text-3xl dark:text-white"  data-aos="fade-up" data-aos-duration="1000">Frequently asked questions</h2>
+          <div class="max-w-screen-md mx-auto">
+              <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
+                  <h3 id="accordion-flush-heading-1">
+                      <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-900 bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
+                          <span>Can I access Nest offline?</span>
+                          <svg data-accordion-icon="" class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                      </button>
+                  </h3>
+                  <div id="accordion-flush-body-1" class="" aria-labelledby="accordion-flush-heading-1">
+                      <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                          <p class="mb-2 text-gray-500 dark:text-gray-400">Nest requires an internet connection to function since it is a web based app, but you can bookmark important links in your browser for offline access.</p>
+                          <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="#" class="text-blue-500 dark:text-purple-500 hover:underline">get started</a> and start organizing your links even faster right away.</p>
+                      </div>
+                  </div>
+                  <h3 id="accordion-flush-heading-2">
+                      <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
+                          <span>Can I share my folders with others?
+
+                          </span>
+                          <svg data-accordion-icon="" class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                      </button>
+                  </h3>
+                  <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
+                      <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                          <p class="mb-2 text-gray-500 dark:text-gray-400">Currently, Nest does not support folder sharing. However, this feature may be added in future updates, so stay tuned!</p>
+                  
+                      </div>
+                  </div>
+                  <h3 id="accordion-flush-heading-3">
+                      <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
+                          <span>Can I customize my folders?
+
+                  </span>
+                          <svg data-accordion-icon="" class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                      </button>
+                  </h3>
+                  <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
+                      <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                          <p class="mb-2 text-gray-500 dark:text-gray-400">Yes! You can create custom folders, rename them, and organize your links based on your preferences.</p>
+                          <p class="mb-2 text-gray-500 dark:text-gray-400">However, you can also categorize your folders based on your preference. You can add tags for easy access etc.</p>
+                        
+                          </ul>
+                      </div>
+                  </div>
+                  <h3 id="accordion-flush-heading-4">
+                      <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-4" aria-expanded="false" aria-controls="accordion-flush-body-4">
+                          <span>Is there a premium version of Nest?</span>
+                          <svg data-accordion-icon="" class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                      </button>
+                  </h3>
+                  <div id="accordion-flush-body-4" class="hidden" aria-labelledby="accordion-flush-heading-4">
+                      <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                          <p class="mb-2 text-gray-500 dark:text-gray-400">We are exploring premium features for future releases. Stay updated for announcements regarding pricing and additional features.</p>
+          
+                          <p class="mb-2 text-gray-500 dark:text-gray-400">You can follow our social pages for future updates:</p>
+                          <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
+                              <li><a href="#" class="text-purple-600 dark:text-purple-500 hover:underline">Twitter</a></li>
+                              <li><a href="#" class="text-purple-600 dark:text-purple-500 hover:underline">Facebook</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div> 
+          </div>               
+      </div>
+  </section>
+
+
+
+  <section class="bg-gray-50 dark:bg-gray-800 mb-24" >
+    <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6" data-aos="fade-down" data-aos-duration="2000">
+        <figure class="max-w-screen-md mx-auto">
+            <svg class="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor"/>
+            </svg> 
+            <blockquote>
+                <p class="text-xl font-medium text-gray-900 md:text-2xl dark:text-white">"Nest isn’t just a passive butler; it’s like Alfred from Batman—anticipating your needs. It suggests related folders based on your existing links. Suddenly, organizing feels less like a chore and more like a game of digital Tetris."</p>
+            </blockquote>
+            <figcaption class="flex items-center justify-center mt-6 space-x-3">
+                <img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+                <div class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
+                    <div class="pr-3 font-medium text-gray-900 dark:text-white">Pjotr Steinmetz</div>
+                    <div class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">Founder at StellarPH</div>
+                </div>
+            </figcaption>
+        </figure>
+    </div>
+  </section>
+
+
+  <script src="static/js/gsap.min.js"></script>
+  <script src="static/js/ScrollTrigger.min.js"></script>
+  <script>
+
+    gsap.to(".box", {
+      rotation: 360,
+      duration: 3,
+      
+      transformOrigin:"50% 50%",
+      
+    })
+
+
+      gsap.to(".box", {
+                 y: -20,  // Move up by 20 pixels
+                duration: 1,  // Duration of the upward movement
+                ease: "sine.inOut",  // Easing for smooth effect
+                yoyo: true,  // Reverse the animation after completing
+                repeat: -1,
+    })
+
+      
+
+
+    
+
+  </script>
+
+
+    {% include 'components/footer.html' %} {% endblock %}
+  </body>
+</html>
