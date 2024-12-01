@@ -33,9 +33,9 @@ Users can categorize data and content with the following capabilities:
 - Predefined and Custom Categories: Choose from predefined categories or create custom ones for better organization.
 - Tagging and Filtering: Assign tags to items and filter content by category, tag, or other attributes.
 
-## Parsing Events
+## Sharing
 
-The system automatically parses scheduled links into organized, easy-to-view events, helping users manage tasks and deadlines more efficiently.
+The system automatically sharel  links into organized, easy-to-view, helping users manage tasks and deadlines more efficiently.
 
 
 # Optional Features
